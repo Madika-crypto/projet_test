@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<h1>Page d'accueil</h1>
+
+{# {{ dump(app.user)}} #}
+
+
+{# <a class="btn btn-primary" href="{{ path('home_page2')}}">accès à la page 2</a> #}
+<a class="btn btn-primary" href="{{ path('home_new_cat')}}">appel new category</a>
+{% endblock %}
+

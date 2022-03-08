@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-2">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="{{ path('home')}}">SymfonyProject</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarColor03">
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link active" href="{{ path('home')}}">Home
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('product_index')}}">Product</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link" href="{{ path('category_index')}}">Category</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" 
+					href="{{ path('category_index')}}" role="button" aria-haspopup="true" 
+					aria-expanded="false">Category</a>
+					<div class="dropdown-menu">					
+					{{ render(controller("App\\Controller\\NavBarController::navBarCats")) }}					
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/">About</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav ms-auto">
+				{% if is_granted("ROLE_ADMIN") %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('admin')}}">Page admin</a>
+					</li>
+				{% endif %}
+				{% if app.user %}
+					<li class="nav-item">
+						<a class="nav-link" href="#">Mon compte</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link btn btn-secondary text-light" href="{{ path('logout')}}">Deconnexion</a>
+					</li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_register')}}">Incription</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link btn btn-secondary text-light" href="{{ path('login')}}">Connexion</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+</nav>
